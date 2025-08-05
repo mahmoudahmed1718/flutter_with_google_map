@@ -20,14 +20,19 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      cameraTargetBounds: CameraTargetBounds(
-        LatLngBounds(
-          southwest: LatLng(37.7749, -122.4194), // Southwest corner
-          northeast: LatLng(37.8049, -122.3894), // Northeast corner
+    return Stack(
+      children: [
+        GoogleMap(initialCameraPosition: initialCameraPosition),
+        Positioned(
+          top: 16,
+          left: 16,
+          right: 16,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text('change camera position'),
+          ),
         ),
-      ),
-      initialCameraPosition: initialCameraPosition,
+      ],
     );
   }
 }
