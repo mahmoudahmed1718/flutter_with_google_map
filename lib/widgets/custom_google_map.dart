@@ -9,6 +9,7 @@ class CustomGoogleMap extends StatefulWidget {
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   late CameraPosition initialCameraPosition;
+  late GoogleMapController googleMapController;
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
@@ -19,10 +20,21 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   }
 
   @override
+  void dispose() {
+    googleMapController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        GoogleMap(initialCameraPosition: initialCameraPosition),
+        GoogleMap(
+          onMapCreated: (controller) {
+            googleMapController = controller;
+          },
+          initialCameraPosition: initialCameraPosition,
+        ),
         Positioned(
           top: 16,
           left: 16,
