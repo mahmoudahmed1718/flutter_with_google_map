@@ -12,6 +12,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
+      zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
     super.initState();
@@ -19,6 +20,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(initialCameraPosition: initialCameraPosition);
+    return GoogleMap(
+      cameraTargetBounds: CameraTargetBounds(
+        LatLngBounds(
+          southwest: LatLng(37.7749, -122.4194), // Southwest corner
+          northeast: LatLng(37.8049, -122.3894), // Northeast corner
+        ),
+      ),
+      initialCameraPosition: initialCameraPosition,
+    );
   }
 }
