@@ -41,13 +41,13 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
           right: 16,
           child: ElevatedButton(
             onPressed: () {
-              CameraPosition newCameraPosition = const CameraPosition(
-                target: LatLng(34.0522, -118.2437), // Los Angeles
-                zoom: 12,
-              );
+              // CameraPosition newCameraPosition = const CameraPosition(
+              //   target: LatLng(34.0522, -118.2437), // Los Angeles
+              //   zoom: 12,
+              // );
 
               googleMapController.animateCamera(
-                CameraUpdate.newCameraPosition(newCameraPosition),
+                CameraUpdate.newLatLng(LatLng(34.0522, -118.2437)), //
               );
             },
             child: Text('change camera position'),
