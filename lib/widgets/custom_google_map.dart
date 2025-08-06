@@ -16,6 +16,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
+    initMapStyles();
     super.initState();
   }
 
@@ -56,4 +57,6 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       ],
     );
   }
+
+  void initMapStyles() {}
 }
