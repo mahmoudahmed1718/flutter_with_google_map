@@ -16,7 +16,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
-    initMapStyles();
+
     super.initState();
   }
 
@@ -33,6 +33,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         GoogleMap(
           onMapCreated: (controller) {
             googleMapController = controller;
+            initMapStyles();
           },
           initialCameraPosition: initialCameraPosition,
         ),
@@ -58,5 +59,10 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     );
   }
 
-  void initMapStyles() {}
+  void initMapStyles() async {
+    var nightStyle = await DefaultAssetBundle.of(
+      context,
+    ).loadString('assets/map_styels/map_styels.json');
+    googleMapController.setMapStyle(nightStyle);
+  }
 }
