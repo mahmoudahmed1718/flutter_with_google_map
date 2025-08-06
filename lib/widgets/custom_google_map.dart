@@ -16,7 +16,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
-
+    initMarker();
     super.initState();
   }
 
@@ -66,5 +66,13 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       context,
     ).loadString('assets/map_styels/map_styels.json');
     googleMapController.setMapStyle(nightStyle);
+  }
+
+  void initMarker() {
+    var myMaker = Marker(
+      markerId: MarkerId('1'),
+      position: LatLng(37.7749, -122.4194),
+    );
+    markers.add(myMaker);
   }
 }
