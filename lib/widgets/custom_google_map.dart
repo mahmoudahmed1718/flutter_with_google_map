@@ -26,11 +26,13 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     super.dispose();
   }
 
+  Set<Marker> markers = {};
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GoogleMap(
+          markers: markers,
           onMapCreated: (controller) {
             googleMapController = controller;
             initMapStyles();
