@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/models/place_model.dart';
+import 'package:flutter_map/utils/assets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CustomGoogleMap extends StatefulWidget {
@@ -69,10 +70,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     googleMapController.setMapStyle(nightStyle);
   }
 
-  void initMarker() {
+  void initMarker() async {
+    var customMarkerIcon = await BitmapDescriptor.asset(
+      const ImageConfiguration(),
+      Assets.assetsImagesIconMarker,
+    );
     var myMaker = places
         .map(
           (place) => Marker(
+            icon: customMarkerIcon,
             markerId: MarkerId(place.id.toString()),
             position: place.latLng,
             infoWindow: InfoWindow(title: place.name),
