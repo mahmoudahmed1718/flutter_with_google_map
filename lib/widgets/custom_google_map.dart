@@ -86,5 +86,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         )
         .toSet();
     markers.addAll(myMaker);
+    setState(() {
+      markers = markers;
+    });
   }
 }
