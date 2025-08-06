@@ -1,16 +1,16 @@
-# flutter_map
+# 🗺️ Flutter With Google Map
 
-A new Flutter project.
+A Flutter project demonstrating Google Maps integration
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- Display a Google Map widget  
+- Request and display user’s current location  
+- Add custom map markers  
+- Draw routes using polylines  
+- Control camera position (zoom, pan)  
+- Apply custom map styles (e.g., dark mode)
 
-A few resources to get you started if this is your first Flutter project:
+## 📁 Repository
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
