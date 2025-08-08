@@ -18,6 +18,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
+    initCircle();
     initPloyline();
     super.initState();
   }
@@ -28,6 +29,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     super.dispose();
   }
 
+  Set<Circle> circles = {};
+  Set<Polyline> polies = {};
   Set<Marker> markers = {};
   @override
   Widget build(BuildContext context) {
@@ -96,5 +99,20 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       polylineId: const PolylineId('1'),
       points: places.map((place) => place.latLng).toList(),
     );
+    polies.add(polyline);
+    setState(() {
+      polies = polies;
+    });
+  }
+
+  void initCircle() {
+    Circle veroClothingStoreService = Circle(
+      fillColor: Colors.black.withValues(alpha: 0.7),
+      circleId: CircleId('1'),
+      center: const LatLng(31.23335288295843, 29.955435384540227),
+
+      radius: 10000,
+    );
+    circles.add(veroClothingStoreService);
   }
 }
