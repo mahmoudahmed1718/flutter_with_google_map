@@ -18,7 +18,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
-    initMarker();
+    initPloyline();
     super.initState();
   }
 
@@ -89,5 +89,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     setState(() {
       markers = markers;
     });
+  }
+
+  void initPloyline() {
+    Polyline polyline = Polyline(
+      polylineId: const PolylineId('1'),
+      points: places.map((place) => place.latLng).toList(),
+    );
   }
 }
