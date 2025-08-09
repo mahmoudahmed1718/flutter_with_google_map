@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/models/place_model.dart';
 import 'package:flutter_map/utils/assets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({super.key});
@@ -12,14 +13,16 @@ class CustomGoogleMap extends StatefulWidget {
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   late CameraPosition initialCameraPosition;
   late GoogleMapController googleMapController;
+  late Location location;
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
-    initCircle();
-    initPloyline();
+    // initCircle();
+    // initPloyline();
+    checkUserLocation();
     super.initState();
   }
 
@@ -114,5 +117,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       radius: 10000,
     );
     circles.add(veroClothingStoreService);
+  }
+
+  void checkUserLocation() async {
+    var isEnabledLocation = await location.serviceEnabled();
+    if (!isEnabledLocation) {
+      isEnabledLocation = await location.requestService();
+    }
   }
 }
