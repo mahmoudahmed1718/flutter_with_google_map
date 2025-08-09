@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/models/place_model.dart';
 import 'package:flutter_map/utils/assets.dart';
+import 'package:flutter_map/utils/show_snak_bar_method.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -123,6 +124,20 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     var isEnabledLocation = await location.serviceEnabled();
     if (!isEnabledLocation) {
       isEnabledLocation = await location.requestService();
+    }
+  }
+
+  void checkUserPermission() async {
+    var isEnabledLocation = await location.hasPermission();
+    if (isEnabledLocation == PermissionStatus.denied) {
+      isEnabledLocation = await location.requestPermission();
+    }
+    if (isEnabledLocation == PermissionStatus.granted) {
+      showSnakBar(
+        // ignore: use_build_context_synchronously
+        context: context,
+        message: 'you need to allow to access your location',
+      );
     }
   }
 }
