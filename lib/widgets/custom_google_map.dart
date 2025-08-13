@@ -21,10 +21,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
       target: LatLng(37.7749, -122.4194), // _
     );
-    // initCircle();
-    // initPloyline();
-    checkUserLocation();
-    getLocationService();
+    updateUserLocation();
     super.initState();
   }
 
@@ -121,14 +118,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     circles.add(veroClothingStoreService);
   }
 
-  void checkUserLocation() async {
+  Future<void> checkUserLocation() async {
     var isEnabledLocation = await location.serviceEnabled();
     if (!isEnabledLocation) {
       isEnabledLocation = await location.requestService();
     }
   }
 
-  void checkUserPermission() async {
+  Future<void> checkUserPermission() async {
     var isEnabledLocation = await location.hasPermission();
     if (isEnabledLocation == PermissionStatus.denied) {
       isEnabledLocation = await location.requestPermission();
@@ -144,5 +141,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
   void getLocationService() {
     location.onLocationChanged.listen((event) {});
+  }
+
+  void updateUserLocation() async {
+    await checkUserLocation();
+    await checkUserPermission();
+    getLocationService();
   }
 }
