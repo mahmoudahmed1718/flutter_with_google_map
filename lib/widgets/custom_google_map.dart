@@ -125,8 +125,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     }
   }
 
-  Future<void> checkUserPermission() async {
+  Future<bool> checkUserPermission() async {
     var isEnabledLocation = await location.hasPermission();
+    if (isEnabledLocation == PermissionStatus.deniedForever) {
+      return false;
+    }
     if (isEnabledLocation == PermissionStatus.denied) {
       isEnabledLocation = await location.requestPermission();
     }
@@ -137,6 +140,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         message: 'you need to allow to access your location',
       );
     }
+    return true;
   }
 
   void getLocationService() {
