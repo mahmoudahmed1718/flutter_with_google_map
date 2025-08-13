@@ -13,7 +13,7 @@ class CustomGoogleMap extends StatefulWidget {
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
   late CameraPosition initialCameraPosition;
-  late GoogleMapController googleMapController;
+  GoogleMapController? googleMapController;
   late Location location;
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
   @override
   void dispose() {
-    googleMapController.dispose();
+    googleMapController!.dispose();
     super.dispose();
   }
 
@@ -57,7 +57,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
               //   zoom: 12,
               // );
 
-              googleMapController.animateCamera(
+              googleMapController!.animateCamera(
                 CameraUpdate.newLatLng(LatLng(34.0522, -118.2437)), //
               );
             },
@@ -72,7 +72,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     var nightStyle = await DefaultAssetBundle.of(
       context,
     ).loadString('assets/map_styels/map_styels.json');
-    googleMapController.setMapStyle(nightStyle);
+    googleMapController!.setMapStyle(nightStyle);
   }
 
   void initMarker() async {
@@ -144,7 +144,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   }
 
   void getLocationService() {
-    location.onLocationChanged.listen((event) {});
+    location.onLocationChanged.listen((event) {
+      var cameraPosition = CameraPosition(
+        target: LatLng(event.latitude!, event.longitude!),
+      );
+      googleMapController?.animateCamera(
+        CameraUpdate.newCameraPosition(cameraPosition),
+      );
+    });
   }
 
   void updateUserLocation() async {
