@@ -24,6 +24,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     // initCircle();
     // initPloyline();
     checkUserLocation();
+    getLocationService();
     super.initState();
   }
 
@@ -139,5 +140,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         message: 'you need to allow to access your location',
       );
     }
+  }
+
+  void getLocationService() {
+    location.onLocationChanged.listen((event) {});
   }
 }
