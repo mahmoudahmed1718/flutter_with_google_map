@@ -148,9 +148,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       var cameraPosition = CameraPosition(
         target: LatLng(event.latitude!, event.longitude!),
       );
+      var marker = Marker(
+        markerId: const MarkerId('1'),
+        position: LatLng(event.latitude!, event.longitude!),
+      );
       googleMapController?.animateCamera(
         CameraUpdate.newCameraPosition(cameraPosition),
       );
+      markers.add(marker);
+      setState(() {});
     });
   }
 
